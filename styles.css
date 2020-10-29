@@ -12,7 +12,8 @@ body{
     /*width: 100vw; */
     width: 100vw;
     height: auto;
-    background-color: rgb(44, 51, 51);
+    background-color: #424242;
+    
 }
 
 header{
@@ -25,9 +26,14 @@ header{
 }
 
 h1{
-    width: 30vw;
-    color: yellow;
-    font-family: sans-serif;
+    width: 30vw; 
+    color: #FFD600;
+    font-family: "ropa sans"; /*Kopierade alla styles i h1:an direkt från figman. */
+    font-style: normal; 
+    font-weight: normal; 
+    font-size: 64px;
+    line-height: 69px;
+    letter-spacing: 0.15em; 
 }
 
 main{
@@ -45,5 +51,82 @@ main{
     background-color: dimgray;
     width: 400px;
     border-radius: 10px 10px 0 0;
-    
+
 }
+
+.card-headings{ /* Skapade denna för att stylea rubrikerna på korten.*/
+    color: #FFD600;
+    font-family: "ropa sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    padding: 5%;
+    height: 16%;
+}
+
+.character-list{
+    list-style: none;
+    font-family: "Open Sans";
+
+}
+
+li:nth-child(odd){
+    background-color: #8E8E8E;
+    padding: 3%;
+    color: white;
+
+}
+
+li:nth-child(even){
+    background-color: #E1DEDE;
+    padding: 3%;
+    color: #535556;
+}
+
+.pages{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 10% 80px 0px 80px;
+    font-family: "Open Sans";
+    font-size: 20px;
+}
+
+button{
+    outline: none;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+}
+
+button:hover{
+    color: #FFD600;
+}
+
+button:active{
+    color: white;
+}
+
+.details-card{
+    background-color: #748687;
+}
+
+.details-character{
+    height: 42%;
+    background-color: #C4C4C4;
+    font-family: "Open Sans";
+    color: black;
+    padding: 3%;
+}
+
+.details-planet{
+    height: 42%;
+    background-color: #8E8E8E;
+    font-family: "Open Sans";
+    color: white;
+    padding: 3%;
+}
+
