@@ -1,47 +1,48 @@
 
 
-async function getData() {
-    const data = await fetch("https://swapi.dev/api/people/")
-    const peopleData = await data.json()
+async function listCharacters() {
+    const response = await fetch("https://swapi.dev/api/people/")
+    const data = await response.json()
 
-    return peopleData
+    
+    return data.results
+}
+
+function renderListItem(character) {
+        const newListItem = document.createElement("li")
+        newListItem.innerText = character.name
+    
+        
+        document.querySelector(".character-list").append(newListItem)
+       
+
+           newListItem.addEventListener("click", ()=>{
+                renderDetails(character)
+            })
+         
+    }
+
+function renderDetails(character){
+    const characterName = document.querySelector(".details-character-name")
+    characterName.innerHTML = character.name
+
+    //const slicedCharacter = character.slice(2)
+    //console.log(JSON.stringify(slicedCharacter)) 
+    //console.log(Object.entries(character));
+
+}
+
+    
+
+async function renderCharacterList(){
+    const characters = await listCharacters()
+
+    for(let character of characters){
+        renderListItem(character)
+    }
+console.log(characters)    
 }
 
 
-getData() // vi hämtar datan från asyncfunktionen 
-    .then(peopleData => {
-        
-        // iterera över datan och skapa list items
-        peopleData.results.forEach(character => {
-            const newListItem = document.createElement("li")
-            newListItem.innerText = character.name
+renderCharacterList()
 
-            document.querySelector(".character-list").append(newListItem)
-        });
-
-        /* for(let i = 0; i < 5; i++) {
-            document.querySelector(".character-list").append(newListItem)
-        } */
-        
-        console.log(peopleData);
-    })
-
-
-    /* .then(peopleData => {
-        const listItems = document.querySelectorAll("li")
-        
-        listItems.forEach(item => {
-            item.addEventListener("click", showInfo())
-        });
-
-        function showInfo() {
-            listItems[2].innerText = "de funka"
-        }
-       
-    }); */
-
-/* 
-1. ska kunna ändra mellan sidorna på charactercard
-    och allt vad det innebär
-2. list items ska genereras med datans antal 
-*/
