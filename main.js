@@ -25,7 +25,7 @@ async function listCharacters() { //Hämtar char/people-datan från API:et.
 function renderListItem(character) { //Skapar ett li element för varje character på vänster kort. Ger elementen en lyssnare. 
         const newListItem = document.createElement("li")
         newListItem.innerText = character.name
-    
+
         
         document.querySelector(".character-list").append(newListItem)
        
@@ -52,10 +52,11 @@ function renderDetails(character){ //Renderar character namnen i rubriken på h�
 async function renderCharacterList(){ //Lägger på character namnen på varje li på vänster kort. 
     const characters = await listCharacters()
 
-    for(let character of characters){
-        renderListItem(character)
+    for(let i = 0; i < 6; i++){ //Ändrade här för att få 6 resultat på vänster kort. 
+        renderListItem(characters[i+6])
+        console.log(characters[i])
     }
-console.log(characters)    
+//console.log(characters)    
 }
 
 
