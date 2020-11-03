@@ -16,25 +16,21 @@ async function listCharacters() { //Hämtar char/people-datan från API:et.
                 allCharacters.push(current)
             }
         }
-
-
-    console.log(allCharacters)    
+   
+    
     return allCharacters
 }
 
 function renderListItem(character) { //Skapar ett li element för varje character på vänster kort. Ger elementen en lyssnare. 
-        const newListItem = document.createElement("li")
-        newListItem.innerText = character.name
+    const newListItem = document.createElement("li")
+    newListItem.innerText = character.name
 
-        
-        document.querySelector(".character-list").append(newListItem)
-       
-
-           newListItem.addEventListener("click", ()=>{
-                renderDetails(character)
-            })
-         
-    }
+    document.querySelector(".character-list").append(newListItem)
+    
+    newListItem.addEventListener("click", ()=>{
+        renderDetails(character)
+    })
+}
 
 function renderDetails(character){ //Renderar character namnen i rubriken på höger kort.  
     const characterName = document.querySelector(".details-character-name")
@@ -52,9 +48,10 @@ function renderDetails(character){ //Renderar character namnen i rubriken på h�
 async function renderCharacterList(){ //Lägger på character namnen på varje li på vänster kort. 
     const characters = await listCharacters()
 
+    document.querySelector(".character-list").innerHTML = ""
+
     for(let i = 0; i < 6; i++){ //Ändrade här för att få 6 resultat på vänster kort. 
-        renderListItem(characters[i+6])
-        console.log(characters[i])
+        renderListItem(characters[i + counter])
     }
 //console.log(characters)    
 }
@@ -85,8 +82,41 @@ async function renderPlanetDetails(character) {
 
 //Sid-grejjor
 
+let counter = 0 //indexen som ökar när man klickar på högra knappen 
+
+const currentPage = document.querySelector(".current-page")
+let currentPageNum = 1
+
 const buttonRight = document.querySelector(".button-right")
-buttonRight.addEventListener("click", nextPage)
+buttonRight.addEventListener("click", () => {
+    
+    if(counter < 76){
+        counter += 6
+        renderCharacterList()
+        currentPageNum += 1
+    } else{
+        counter = 0
+        renderCharacterList()
+        currentPageNum = 1
+    }
+    currentPage.innerHTML = currentPageNum
+})
+
+const buttonLeft = document.querySelector(".button-left")
+buttonLeft.addEventListener("click", () => {
+
+    if(counter == 0){
+        counter = 78
+        renderCharacterList()
+        currentPageNum = 14
+    } else{
+        counter -= 6
+        renderCharacterList()
+        currentPageNum -= 1
+    }
+    currentPage.innerHTML = currentPageNum
+})
+
 
 
 
